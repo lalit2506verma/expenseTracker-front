@@ -1,0 +1,43 @@
+section .content-center{
+    height: 85dvh;
+    display: flex;
+    justify-content: center;
+}
+
+.title-header .main-header{
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: rgb(93, 93, 93);
+}
+
+.title-header .main-header:nth-child(1){
+    position: relative;
+    z-index: 2;
+    letter-spacing: 2px;
+}
+
+.title-header .main-header:nth-child(2){
+    position: relative;
+    top: -20px;
+    right: -3px;
+    z-index: 1;
+}
+
+.sample-dashboard{
+    height: 700px;
+    width: 1000px;
+    margin-top: 10%;
+}
+
+.text-primary{
+    color: #0d6efd;
+}
+
+.btn-xl{
+    padding: 10px 20px;
+    width: 40%;
+}
+
+.pt-20 {
+    padding-top: 20%;
+}
