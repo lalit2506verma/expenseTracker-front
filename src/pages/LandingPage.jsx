@@ -1,5 +1,5 @@
 import './LandingPage.css'
-import dashboard from '../images/sampleDashboard.jpg'
+import dashboard from '../resource/sampleDashboard.jpg'
 import React from 'react'
 
 export default function LandingPage() {
