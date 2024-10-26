@@ -4,6 +4,7 @@ import { RiGoogleFill } from "react-icons/ri";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     return (
@@ -55,7 +56,7 @@ export default function Login() {
                                     <span className="input-group-text">
                                         <FaRegUser />
                                     </span>
-                                    <input type="text" className="form-control form-control-lg fs-6"
+                                    <input required type="text" className="form-control form-control-lg fs-6"
                                         placeholder="Username" />
                                 </div>
 
@@ -63,7 +64,7 @@ export default function Login() {
                                     <span className="input-group-text">
                                         <RiLockPasswordLine />
                                     </span>
-                                    <input type="password" className="form-control form-control-lg fs-6"
+                                    <input required type="password" className="form-control form-control-lg fs-6"
                                         placeholder="Password" />
                                 </div>
 
@@ -76,6 +77,7 @@ export default function Login() {
 
                                     <div>
                                         <small>
+                                            {/* Need to change the Anchor tag to Link tag */}
                                             <a href="#"> Forget Password?</a>
                                         </small>
                                     </div>
@@ -88,7 +90,7 @@ export default function Login() {
                             {/* End Login Form */}
 
                             <div className="text-center">
-                                <small> Don't have an account? <a className="ms-2" href="#">Sign Up</a></small>
+                                <small> Don't have an account? <Link to="/register" className="ms-2">Sign Up</Link></small>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import React from 'react'
 
 export default function Navbar() {
+
+    const navigate = useNavigate()
+
     return (
         <nav className="navbar bg-body-tertiary border-bottom border-4">
             <div className="container-fluid ">
@@ -17,8 +21,14 @@ export default function Navbar() {
 
                 {/* SignUp and Sigin Button */}
                 <div className="started-button mx-4">
-                    <button type="button" className="btn btn-primary btn-md mx-3">Sign Up</button>
-                    <button type="button" className="btn btn-outline-primary btn-md border-2 mx-3">Sign In</button>
+                    <button type="button" className="btn btn-primary btn-md mx-3"
+                        onClick={() => navigate('/register')}>
+                        Sign Up
+                    </button>
+                    <button type="button" className="btn btn-outline-primary btn-md border-2 mx-3"
+                        onClick={() => navigate('/login')}>
+                        Sign In
+                    </button>
                 </div>
             </div>
         </nav>
