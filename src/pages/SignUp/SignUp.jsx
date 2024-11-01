@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import './SignInPage.css'
+import React, { useEffect, useState } from 'react'
+import './SignUp.css'
 import { RiGoogleFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
+import { signUp } from '../../services/user-service';
 
 
-export default function SignInPage() {
+export default function SignUp() {
 
     //terms and Conditions - Checked
     const [accept, setAccept] = useState(false);
@@ -15,6 +16,53 @@ export default function SignInPage() {
         //console.log(checked);
     }
 
+    //Two way binding for the form feilds
+    const [data, setData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    })
+
+    const [error, setError] = useState({
+        Errors: {},
+        isError: false
+    })
+
+    //Handle change
+    const handleChange = (event, field) => {
+        //dynamically seting up the data in the data useState Hook
+        setData({ ...data, [field]: event.target.value })
+
+    }
+
+    //Submitting the registration form
+    const formSubmit = (event) => {
+        event.preventDefault()
+
+        //data validation
+
+        if (data.name.trim() === "") {
+            alert("Enter a valid Name");
+        }
+
+        if (data.password.trim() == "") {
+            alert("Enter a strong password");
+        }
+
+        //call server api for sending data
+        signUp(data).then((resp) => {
+            console.log(resp);
+            console.log("Success Log");
+        }).catch((error) => {
+            console.log(error);
+            console.log("Error log");
+        });
+    }
+
+    //Using useEffect Hook for logging the data on handlechange - DEBUGGING
+    // useEffect(() => {
+    //     console.log(data);
+    // }, [data])
 
     return (
         <div className="container-fluid p-2">
@@ -47,21 +95,42 @@ export default function SignInPage() {
                             {/* End Divider */}
 
                             {/* Registration Form */}
-                            <form action="/">
+                            <form onSubmit={formSubmit}>
 
                                 <div className="input-group mb-4">
                                     <label htmlFor="name" className="form-label">Name<span>*</span></label>
-                                    <input required type="text" className="form-control w-100 rounded-pill" id="name" placeholder="Name" />
+                                    <input required
+                                        type="text"
+                                        className="form-control w-100 rounded-pill"
+                                        id="name"
+                                        placeholder="Name"
+                                        onChange={(e) => handleChange(e, 'name')}
+                                        value={data.name}
+                                    />
                                 </div>
 
                                 <div className="input-group  mb-4">
                                     <label htmlFor="email" className="form-label">Email<span>*</span></label>
-                                    <input required type="email" className="form-control w-100 rounded-pill" id="email" placeholder="Email" />
+                                    <input required
+                                        type="email"
+                                        className="form-control w-100 rounded-pill"
+                                        id="email"
+                                        placeholder="Email"
+                                        onChange={(e) => handleChange(e, 'email')}
+                                        value={data.email}
+                                    />
                                 </div>
 
                                 <div className="input-group  mb-4">
                                     <label htmlFor="password" className="form-label">Password<span>*</span></label>
-                                    <input required type="password" className="form-control w-100 rounded-pill" id="password" placeholder="Password" />
+                                    <input required
+                                        type="password"
+                                        className="form-control w-100 rounded-pill"
+                                        id="password"
+                                        placeholder="Password"
+                                        onChange={(e) => handleChange(e, 'password')}
+                                        value={data.password}
+                                    />
                                 </div>
 
                                 <div className="input-group mb-3 d-flex justify-content-between">
